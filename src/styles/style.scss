@@ -14,6 +14,11 @@ body {
   font-family: "Satoshi", sans-serif;
 }
 
+.vector_container {
+  position: fixed;
+  height: 100vh;
+}
+
 .vectorTwo {
   background: rgba(240, 78, 156, 0.16);
   filter: blur(342.492px);
