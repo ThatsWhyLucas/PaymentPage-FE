@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "@mui/material";
 import DetailsCard from "../../components/DetailsCard";
+import Form from "../../components/Form";
 import { ThemeProvider, createTheme } from "@mui/material";
 
 const theme = createTheme({
@@ -25,6 +26,7 @@ const Home = () => {
     <ThemeProvider theme={theme}>
       <Container maxWidth="false" sx={{ fontFamily: "Satoshi" }}>
         <DetailsCard />
+        <Form />
         {vectors()}
       </Container>
     </ThemeProvider>
