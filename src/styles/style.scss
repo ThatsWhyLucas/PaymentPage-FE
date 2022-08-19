@@ -7,8 +7,71 @@
 @import "_mixins.scss";
 
 body {
-  margin: auto;
-  background: #000000;
-  overflow-x: hidden;
-  white-space: pre-line;
+  background: linear-gradient(180deg, #f8fafc 18.16%, rgba(248, 250, 252, 0.95) 100%);
+  padding: 70px;
+  font-family: "Satoshi", sans-serif;
+}
+
+.vectorTwo {
+  background: rgba(240, 78, 156, 0.16);
+  filter: blur(342.492px);
+  transform: rotate(31.07deg);
+  height: 546.675px;
+  @media screen and (max-width: 1920px) {
+    height: 364.45px;
+  }
+  @media screen and (max-width: 1440px) {
+    height: 273.3375px;
+  }
+  @media screen and (max-width: 1280px) {
+    height: 242.967px;
+  }
+}
+
+.vectorEight {
+  background: rgba(30, 192, 227, 0.16);
+  filter: blur(342.492px);
+  transform: rotate(31.07deg);
+  height: 462.105px;
+  @media screen and (max-width: 1920px) {
+    height: 308.07px;
+  }
+  @media screen and (max-width: 1440px) {
+    height: 231.0525px;
+  }
+  @media screen and (max-width: 1280px) {
+    height: 205.38px;
+  }
+}
+
+.vectorTen {
+  background: rgba(123, 114, 226, 0.2);
+  filter: blur(266.383px);
+  transform: matrix(0.3, 0.95, 0.95, -0.3, 0, 0);
+  height: 613.83px;
+  @media screen and (max-width: 1920px) {
+    height: 409.225px;
+  }
+  @media screen and (max-width: 1440px) {
+    height: 306.9155px;
+  }
+  @media screen and (max-width: 1280px) {
+    height: 272.8133333px;
+  }
+}
+
+.vectorSeven {
+  background: rgba(30, 192, 227, 0.16);
+  filter: blur(342.492px);
+  transform: rotate(31.07deg);
+  height: 480.51px;
+  @media screen and (max-width: 1920px) {
+    height: 320.34px;
+  }
+  @media screen and (max-width: 1440px) {
+    height: 240.255px;
+  }
+  @media screen and (max-width: 1280px) {
+    height: 213.56px;
+  }
 }
