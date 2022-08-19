@@ -13,7 +13,7 @@ const theme = createTheme({
 const Home = () => {
   const vectors = () => {
     return (
-      <div>
+      <div className="vector_container">
         <div className="vectorTwo" />
         <div className="vectorEight" />
         <div className="vectorTen" />

@@ -1,24 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Grid, Typography, TextField } from "@mui/material";
 
 const DataGrid = () => {
   const Data = [
-    { label: "Payments method" },
-    { label: "Payments " },
-    { label: "Payments asdmethod" },
-    { label: "Payments mesadthod" },
-    { label: "Payments methasdasdod" },
-    { label: "Payments methodsd" },
+    { name: "customerNumber", label: "Customer Number", example: "Ex. Jane Cooper" },
+    { name: "customerFirstName", label: "Customer First Name", example: "Ex. Jane Cooper" },
+    { name: "customerLastName", label: "Customer Last Name", example: "Ex. Jane Cooper" },
+    { name: "propertyAddress", label: "Property Address", example: "Ex. Jane Cooper" },
+    { name: "customerEmail", label: "Customer Email", example: "Ex. Jane Cooper" },
+    { name: "customerMobile", label: "Customer Mobile Number ", example: "Ex. Jane Cooper" },
   ];
 
-  const leftColumn = Data.slice(0, 3);
-  const rightColumn = Data.slice(3, 6);
+  const [form, setForm] = useState({
+    customerNumber: "",
+    customerFirstName: "",
+    customerLastName: "",
+    propertyAddress: "",
+    customerEmail: "",
+    customerMobile: "",
+  });
+
+  const handleInformation = (name, value) => {
+    const newForm = { ...form };
+    newForm[name] = value;
+    setForm(newForm);
+  };
+
+  const leftColumn = Data.slice(0, 4);
+  const rightColumn = Data.slice(4, 7);
   return (
     <Grid container spacing={2}>
       <Grid item xs={6}>
         {leftColumn.map((element) => (
-          <div>
+          <div key={`lf-${element.name}`}>
             <Typography
               variant="h5"
               component="div"
@@ -29,17 +44,18 @@ const DataGrid = () => {
             <TextField
               id="outlined-basic"
               margin="dense"
-              onChange={(e) => console.log(e.target.value)}
+              onChange={(e) => handleInformation(element.name, e.target.value)}
               fullWidth
               label={element.label}
               variant="outlined"
+              placeholder={element.example}
             />
           </div>
         ))}
       </Grid>
       <Grid item xs={6}>
         {rightColumn.map((element) => (
-          <div>
+          <div key={`rg-${element.name}`}>
             <Typography
               variant="h5"
               component="div"
@@ -50,10 +66,11 @@ const DataGrid = () => {
             <TextField
               id="outlined-basic"
               margin="dense"
-              onChange={(e) => console.log(e.target.value)}
+              onChange={(e) => handleInformation(element.name, e.target.value)}
               fullWidth
               label={element.label}
               variant="outlined"
+              placeholder={element.example}
             />
           </div>
         ))}
