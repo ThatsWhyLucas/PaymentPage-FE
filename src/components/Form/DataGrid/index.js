@@ -30,7 +30,7 @@ const DataGrid = () => {
   const leftColumn = Data.slice(0, 4);
   const rightColumn = Data.slice(4, 7);
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={"90px"}>
       <Grid item xs={6}>
         {leftColumn.map((element) => (
           <div key={`lf-${element.name}`}>

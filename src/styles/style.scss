@@ -15,23 +15,26 @@ body {
 }
 
 .vector_container {
-  position: fixed;
-  height: 100vh;
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  z-index: -1;
+  width: 78%;
 }
 
 .vectorTwo {
   background: rgba(240, 78, 156, 0.16);
   filter: blur(342.492px);
   transform: rotate(31.07deg);
-  height: 546.675px;
+  height: 146.675px;
   @media screen and (max-width: 1920px) {
-    height: 364.45px;
+    height: 214.45px;
   }
   @media screen and (max-width: 1440px) {
-    height: 273.3375px;
+    height: 208.3375px;
   }
   @media screen and (max-width: 1280px) {
-    height: 242.967px;
+    height: 192.967px;
   }
 }
 
@@ -39,15 +42,15 @@ body {
   background: rgba(30, 192, 227, 0.16);
   filter: blur(342.492px);
   transform: rotate(31.07deg);
-  height: 462.105px;
+  height: 62.105px;
   @media screen and (max-width: 1920px) {
-    height: 308.07px;
+    height: 158.07px;
   }
   @media screen and (max-width: 1440px) {
-    height: 231.0525px;
+    height: 166.0525px;
   }
   @media screen and (max-width: 1280px) {
-    height: 205.38px;
+    height: 200.38px;
   }
 }
 
@@ -55,12 +58,12 @@ body {
   background: rgba(123, 114, 226, 0.2);
   filter: blur(266.383px);
   transform: matrix(0.3, 0.95, 0.95, -0.3, 0, 0);
-  height: 613.83px;
+  height: 313.83px;
   @media screen and (max-width: 1920px) {
-    height: 409.225px;
+    height: 259.225px;
   }
   @media screen and (max-width: 1440px) {
-    height: 306.9155px;
+    height: 241.9155px;
   }
   @media screen and (max-width: 1280px) {
     height: 272.8133333px;
@@ -71,12 +74,12 @@ body {
   background: rgba(30, 192, 227, 0.16);
   filter: blur(342.492px);
   transform: rotate(31.07deg);
-  height: 480.51px;
+  height: 180.51px;
   @media screen and (max-width: 1920px) {
-    height: 320.34px;
+    height: 180.34px;
   }
   @media screen and (max-width: 1440px) {
-    height: 240.255px;
+    height: 175.255px;
   }
   @media screen and (max-width: 1280px) {
     height: 213.56px;
