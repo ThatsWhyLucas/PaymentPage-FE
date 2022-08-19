@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, Typography, Box } from "@mui/material";
+import { Card, CardContent, Typography, Box, Grid, Button } from "@mui/material";
 
 import DataGrid from "./DataGrid";
 
@@ -16,6 +16,19 @@ const Form = () => {
           <Box sx={{ width: "100%" }}>
             <DataGrid />
           </Box>
+
+          <Grid container spacing={"90px"}>
+            <Grid item xs={6} sx={{ marginTop: "32px", fontSize: "16px", fontWeight: "700px" }}>
+              <Button fullWidth variant="outlined">
+                Cancel
+              </Button>
+            </Grid>
+            <Grid item xs={6} sx={{ marginTop: "32px", fontSize: "16px", fontWeight: "700px" }}>
+              <Button fullWidth variant="contained">
+                Pay $51.00{" "}
+              </Button>
+            </Grid>
+          </Grid>
         </CardContent>
       </Card>
     </div>
