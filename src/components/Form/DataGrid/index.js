@@ -42,13 +42,16 @@ const DataGrid = () => {
               {element.label}
             </Typography>
             <TextField
-              id="outlined-basic"
+              id={element.name}
               margin="dense"
               onChange={(e) => handleInformation(element.name, e.target.value)}
               fullWidth
-              label={element.label}
+              label={form[element.name] === "" ? element.example : " "}
               variant="outlined"
               placeholder={element.example}
+              InputLabelProps={{
+                shrink: false,
+              }}
             />
           </div>
         ))}
@@ -64,13 +67,16 @@ const DataGrid = () => {
               {element.label}
             </Typography>
             <TextField
-              id="outlined-basic"
+              id={element.name}
               margin="dense"
               onChange={(e) => handleInformation(element.name, e.target.value)}
               fullWidth
-              label={element.label}
+              label={form[element.name] === "" ? element.example : " "}
               variant="outlined"
               placeholder={element.example}
+              InputLabelProps={{
+                shrink: false,
+              }}
             />
           </div>
         ))}
