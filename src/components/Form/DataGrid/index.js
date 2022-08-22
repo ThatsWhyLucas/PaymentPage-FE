@@ -92,8 +92,8 @@ const DataGrid = () => {
   const leftColumn = Data.slice(0, 4);
   const rightColumn = Data.slice(4, 7);
   return (
-    <Grid container spacing={"90px"}>
-      <Grid item xs={6}>
+    <Grid container spacing={{ md: '90px', sm: 0 }}>
+      <Grid item xs={12} md={6}>
         {leftColumn.map((element) => (
           <div key={`lf-${element.name}`}>
             <Typography
@@ -118,7 +118,7 @@ const DataGrid = () => {
           </div>
         ))}
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6} >
         {rightColumn.map((element) => (
           <div key={`rg-${element.name}`}>
             <Typography
