@@ -1,20 +1,11 @@
 import React from "react";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import MyThemeProvider from '../MyThemeProvider'
 import { Card, CardContent, Typography, Box, Grid, Button } from "@mui/material";
 
 import DataGrid from "./DataGrid";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#FF7800",
-      contrastText: "#fff",
-    },
-  },
-  typography: {
-    fontFamily: ["Satoshi"],
-  },
-});
+import DialogCreditCardInfo from "../DialogCreditCardInfo";
+import DialogSomethingWrong from "../MyDialog/DialogSomethingWrong";
+import DialogThanks from "../MyDialog/DialogThanks";
 
 const Form = () => {
   return (
@@ -26,12 +17,19 @@ const Form = () => {
               Payments method
             </Typography>
           </div>
+          <div>
+            <DialogSomethingWrong open={false} />
+            <DialogThanks open={false} />
+            <DialogCreditCardInfo />
+          </div>
           <Box sx={{ width: "100%" }}>
-            <DataGrid />
+            <MyThemeProvider>
+              <DataGrid />
+            </MyThemeProvider>
           </Box>
 
           <Grid container spacing={"90px"}>
-            <ThemeProvider theme={theme}>
+            <MyThemeProvider>
               <Grid item xs={6} sx={{ marginTop: "32px", fontSize: "16px", fontWeight: "700px" }}>
                 <Button
                   color="primary"
@@ -47,7 +45,7 @@ const Form = () => {
                   Pay $2405.00
                 </Button>
               </Grid>
-            </ThemeProvider>
+            </MyThemeProvider>
           </Grid>
         </CardContent>
       </Card>
