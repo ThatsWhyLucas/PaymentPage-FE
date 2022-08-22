@@ -1,7 +1,20 @@
 import React from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Card, CardContent, Typography, Box, Grid, Button } from "@mui/material";
 
 import DataGrid from "./DataGrid";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#FF7800",
+      contrastText: "#fff",
+    },
+  },
+  typography: {
+    fontFamily: ["Satoshi"],
+  },
+});
 
 const Form = () => {
   return (
@@ -18,16 +31,23 @@ const Form = () => {
           </Box>
 
           <Grid container spacing={"90px"}>
-            <Grid item xs={6} sx={{ marginTop: "32px", fontSize: "16px", fontWeight: "700px" }}>
-              <Button fullWidth variant="outlined">
-                Cancel
-              </Button>
-            </Grid>
-            <Grid item xs={6} sx={{ marginTop: "32px", fontSize: "16px", fontWeight: "700px" }}>
-              <Button fullWidth variant="contained">
-                Pay $51.00{" "}
-              </Button>
-            </Grid>
+            <ThemeProvider theme={theme}>
+              <Grid item xs={6} sx={{ marginTop: "32px", fontSize: "16px", fontWeight: "700px" }}>
+                <Button
+                  color="primary"
+                  fullWidth
+                  variant="outlined"
+                  sx={{ fontSize: "16px", textTransform: "capitalize" }}
+                >
+                  Cancel
+                </Button>
+              </Grid>
+              <Grid item xs={6} sx={{ marginTop: "32px", fontSize: "16px", fontWeight: "700px" }}>
+                <Button fullWidth variant="contained" sx={{ fontSize: "16px", textTransform: "capitalize" }}>
+                  Pay $2405.00
+                </Button>
+              </Grid>
+            </ThemeProvider>
           </Grid>
         </CardContent>
       </Card>
