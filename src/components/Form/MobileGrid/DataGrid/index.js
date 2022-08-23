@@ -4,9 +4,7 @@ import ErrorIcon from "@mui/icons-material/Error";
 import { Grid, Typography, TextField } from "@mui/material";
 
 import MobileInput from "./MobilePhone";
-import Subtotal from "./Subtotal";
-import Fees from "./Fees";
-import Total from "./Total";
+import Summary from "./Summary";
 
 const DataGrid = () => {
   const Data = [
@@ -39,10 +37,10 @@ const DataGrid = () => {
   });
 
   const errorsTexts = {
-    required: 'This field is required',
-    customerNumberEnterTwice: 'The customer numbers don\'t match',
-    emailDontMatch: 'The email provided seems not valid',
-  }
+    required: "This field is required",
+    customerNumberEnterTwice: "The customer numbers don't match",
+    emailDontMatch: "The email provided seems not valid",
+  };
 
   const validations = {
     setTouched: (name) => {
@@ -64,50 +62,50 @@ const DataGrid = () => {
     },
 
     customerNumber: (value) => {
-      const field = 'customerNumber';
+      const field = "customerNumber";
       validations.standardValidation(field, value);
       // validate HDC spec
     },
     repeatCustomerNumber: (value) => {
-      const field = 'repeatCustomerNumber';
+      const field = "repeatCustomerNumber";
       validations.standardValidation(field, value);
       if (value !== form.customerNumber) {
         validations.addError(field, errorsTexts.customerNumberEnterTwice);
       }
     },
     customerFirstName: (value) => {
-      const field = 'customerFirstName';
+      const field = "customerFirstName";
       validations.standardValidation(field, value);
     },
     customerLastName: (value) => {
-      const field = 'customerLastName';
+      const field = "customerLastName";
       validations.standardValidation(field, value);
     },
     propertyAddress: (value) => {
-      const field = 'propertyAddress';
+      const field = "propertyAddress";
       validations.standardValidation(field, value);
     },
     customerEmail: (value) => {
-      const field = 'customerEmail';
+      const field = "customerEmail";
       validations.setTouched(field);
 
       // source https://regexr.com/3e48o
       if (value && !value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
-        validations.addError(field, errorsTexts.emailDontMatch)
+        validations.addError(field, errorsTexts.emailDontMatch);
       }
 
-      console.log(errors)
+      console.log(errors);
     },
     customerMobile: (value) => {
-      const field = 'customerMobile';
+      const field = "customerMobile";
       validations.standardValidation(field, value);
     },
-  }
+  };
 
   const handleInformation = (name, value) => {
     setForm({
       ...form,
-      [name]: value
+      [name]: value,
     });
     validations[name](value);
   };
@@ -115,24 +113,18 @@ const DataGrid = () => {
   const leftColumn = Data.slice(0, 4);
   const rightColumn = Data.slice(4, 7);
   return (
-    <Grid container spacing={{ md: '90px', sm: 0 }}>
+    <Grid container spacing={{ md: "90px", sm: 0 }}>
       <Grid item xs={12} md={6}>
         {leftColumn.map((element) => (
-          <div key={`lf-${element.name}`}>
-            {generateTextField(element, errors, handleInformation)}
-          </div>
+          <div key={`lf-${element.name}`}>{generateTextField(element, errors, handleInformation)}</div>
         ))}
       </Grid>
-      <Grid item xs={12} md={6} >
+      <Grid item xs={12} md={6}>
         {rightColumn.map((element) => (
-          <div key={`rg-${element.name}`}>
-            {generateTextField(element, errors, handleInformation)}
-          </div>
+          <div key={`rg-${element.name}`}>{generateTextField(element, errors, handleInformation)}</div>
         ))}
         <MobileInput value={form["customerMobile"]} label="Customer Mobile Number" onChange={handleInformation} />
-        <Subtotal subtotal="2500.00" />
-        <Fees fee="45" />
-        <Total total="2405.00" />
+        <Summary subtotal="2500.00" fee="45" total="2405.00" />
       </Grid>
     </Grid>
   );
@@ -144,7 +136,12 @@ function generateTextField(element, errors, onChange) {
       <Typography
         variant="h5"
         component="div"
-        sx={{ marginBottom: "8px", marginTop: "36px", fontWeight: "700", fontSize: "16px" }}
+        sx={{
+          marginBottom: "8px",
+          marginTop: "36px",
+          fontWeight: "700",
+          fontSize: "16px",
+        }}
       >
         {element.label}
       </Typography>
@@ -162,18 +159,20 @@ function generateTextField(element, errors, onChange) {
         }}
       />
     </>
-  )
+  );
 }
 
 function ErrorTextField(elementErrorValue) {
-  if (!elementErrorValue || !elementErrorValue.length) return '';
+  if (!elementErrorValue || !elementErrorValue.length) return "";
 
   return (
-    <span style={{ position: 'relative' }}>
-      <span style={{ position: 'absolute', left: '-12px', paddingTop: '1px' }}><ErrorIcon /></span>
-      <span style={{ paddingLeft: '16px' }}>{elementErrorValue.join('\n')}</span>
-    </span >
-  )
+    <span style={{ position: "relative" }}>
+      <span style={{ position: "absolute", left: "-12px", paddingTop: "1px" }}>
+        <ErrorIcon />
+      </span>
+      <span style={{ paddingLeft: "16px" }}>{elementErrorValue.join("\n")}</span>
+    </span>
+  );
 }
 
 export default DataGrid;

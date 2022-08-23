@@ -9,13 +9,15 @@
 body {
   background: linear-gradient(180deg, #f8fafc 18.16%, rgba(248, 250, 252, 0.95) 100%);
   padding: 5% 10% 5% 10%;
+  @media screen and (max-width: 480px) {
+    padding: 0;
+  }
   font-family: "Satoshi", sans-serif;
 }
 
 .vector_container {
   position: absolute;
   top: 10px;
-  width: 100%;
   z-index: -1;
   width: 78%;
 }
@@ -81,5 +83,39 @@ body {
   }
   @media screen and (max-width: 1280px) {
     height: 213.56px;
+  }
+}
+
+.detailsCard {
+  padding: 40px 40px 16px 40px;
+}
+
+.mobile_grid {
+  display: none;
+}
+
+.react-tel-input .form-control {
+  width: 100% !important;
+}
+
+@media screen and (max-width: 480px) {
+  .form_body {
+    padding: 0 24px 0 24px;
+  }
+  .principal_grid {
+    display: none;
+  }
+  .mobile_grid {
+    display: block;
+  }
+  .css-1wumnyl-MuiContainer-root {
+    padding: 0 !important;
+  }
+  .detailsCard {
+    height: 56px;
+    padding: none;
+    &_content {
+      display: none;
+    }
   }
 }

@@ -24,7 +24,7 @@ const Home = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container maxWidth="false" sx={{ fontFamily: "Satoshi", zIndex: "2" }}>
+      <Container maxWidth="false" sx={{ overflowX: "hidden", fontFamily: "Satoshi", zIndex: "2" }}>
         <DetailsCard />
         <Form />
         {vectors()}
