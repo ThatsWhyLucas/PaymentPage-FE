@@ -4,8 +4,8 @@ import { Card, CardContent, Typography } from "@mui/material";
 const DetailsCard = () => {
   return (
     <div>
-      <Card sx={{ padding: "40px 40px 16px 40px" }}>
-        <CardContent sx={{ padding: "0" }}>
+      <Card className="detailsCard">
+        <CardContent sx={{ padding: "0" }} className="detailsCard_content">
           <Typography variant="h5" component="div" sx={{ marginBottom: "16px", fontWeight: "700", fontSize: "24px" }}>
             Payments Details
           </Typography>
