@@ -7,10 +7,40 @@ const theme = createTheme({
       main: "#FF7800",
       contrastText: "#fff",
     },
+    error: {
+      main: '#EA344C'
+    }
   },
   typography: {
     fontFamily: ["Satoshi"],
   },
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        notchedOutline: {
+          borderWidth: '2px',
+          borderRadius: '12px'
+        }
+      }
+    },
+    MuiButton: {
+      styleOverrides: {
+        outlined:{
+          borderRadius: '12px',
+          borderWidth: '2px'
+        }
+      }
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          whiteSpace: 'break-spaces',
+          fontWeight: '500',
+          fontSize: '14px'
+        }
+      }
+    },
+  }
 });
 
 const MyThemeProvider = ({ children }) => {
