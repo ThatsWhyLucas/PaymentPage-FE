@@ -18,8 +18,6 @@ const Form = () => {
             </Typography>
           </div>
           <div>
-            <DialogSomethingWrong open={false} />
-            <DialogThanks open={false} />
             <DialogCreditCardInfo />
           </div>
           <Box sx={{ width: "100%" }}>
