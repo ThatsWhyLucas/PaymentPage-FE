@@ -8,6 +8,10 @@
 
 .total_grid {
   margin-top: 12px !important;
+  @media screen and (max-width: 480px) {
+    padding-top: 12px;
+    border-top: 1px solid #e3e8ef !important;
+  }
 }
 
 .fees_title {
@@ -25,6 +29,9 @@
 .fees_value {
   font-weight: 700 !important;
   font-size: 16px !important;
+  @media screen and (max-width: 480px) {
+    margin-bottom: 39px !important;
+  }
 }
 
 .subtotal_value {
@@ -42,10 +49,4 @@
   margin-top: 24px !important;
   font-weight: 700 !important;
   font-size: 16px !important;
-}
-
-.summary_content {
-  @media screen and (max-width: 480px) {
-    display: none;
-  }
 }

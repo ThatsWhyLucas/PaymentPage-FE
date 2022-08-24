@@ -6,3 +6,11 @@
     font-size: 14px !important;
   }
 }
+
+.body_grid {
+  .summary_content {
+    @media screen and (max-width: 480px) {
+      display: none;
+    }
+  }
+}

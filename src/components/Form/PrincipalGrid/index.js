@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import DialogCreditCardInfo from "../../DialogCreditCardInfo";
 import DataGrid from "./DataGrid";
@@ -6,9 +6,7 @@ import MyThemeProvider from "../../MyThemeProvider";
 
 import { Typography, Box, Grid, Button, FormControlLabel, Checkbox } from "@mui/material";
 
-const PrincipalGrid = () => {
-  const [price, setPrice] = useState(0);
-
+const PrincipalGrid = ({ price, setPrice, subtotal }) => {
   return (
     <div>
       <Typography variant="h5" component="div" className="grid_title">
@@ -17,7 +15,7 @@ const PrincipalGrid = () => {
       <DialogCreditCardInfo />
       <Box>
         <MyThemeProvider>
-          <DataGrid setPrice={setPrice} />
+          <DataGrid setPrice={setPrice} subtotal={subtotal} />
         </MyThemeProvider>
       </Box>
 
