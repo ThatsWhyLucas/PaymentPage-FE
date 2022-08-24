@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 
-import ErrorIcon from "@mui/icons-material/Error";
-import { Grid, Typography, TextField } from "@mui/material";
+import { Grid } from "@mui/material";
 
 import MobileInput from "../../../MobilePhone";
 import Summary from "../../../Summary";
+import MyTextField from "../../../MyTextField";
+import errorsTexts from "../../../../common/errorsTexts";
 
 const DataGrid = () => {
   const Data = [
-    { name: "customerNumber", label: "Customer Number", example: "A1B2C3", error: false },
-    { name: "repeatCustomerNumber", label: "Repeat customer Number", example: "A1B2C3", error: false },
-    { name: "customerFirstName", label: "Customer First Name", example: "Ex. Jane", error: false },
-    { name: "customerLastName", label: "Customer Last Name", example: "Ex. Cooper", error: false },
-    { name: "propertyAddress", label: "Property Address", example: "Ex. Jane Cooper", error: false },
-    { name: "customerEmail", label: "Customer Email", example: "Ex. Jane Cooper", error: false },
+    { name: "customerNumber", label: "Customer Number", example: "A1B2C3" },
+    { name: "repeatCustomerNumber", label: "Repeat customer Number", example: "A1B2C3" },
+    { name: "customerFirstName", label: "Customer First Name", example: "Ex. Jane" },
+    { name: "customerLastName", label: "Customer Last Name", example: "Ex. Cooper" },
+    { name: "propertyAddress", label: "Property Address", example: "Ex. Jane Cooper" },
+    { name: "customerEmail", label: "Customer Email", example: "Ex. Jane Cooper" },
   ];
 
   const [form, setForm] = useState({
@@ -36,11 +37,6 @@ const DataGrid = () => {
     customerMobile: null,
   });
 
-  const errorsTexts = {
-    required: "This field is required",
-    customerNumberEnterTwice: "The customer numbers don't match",
-    emailDontMatch: "The email provided seems not valid",
-  };
 
   const validations = {
     setTouched: (name) => {
@@ -56,72 +52,106 @@ const DataGrid = () => {
         validations.addError(field, errorsTexts.required);
       }
     },
-    standardValidation(field, value) {
+    standardValidation: (field, value) => {
       validations.setTouched(field);
       validations.validateRequired(field, value);
     },
 
     customerNumber: (value) => {
-      const field = "customerNumber";
+      const field = 'customerNumber';
       validations.standardValidation(field, value);
       // validate HDC spec
+      if (value.length !== 16) {
+        validations.addError(field, errorsTexts.customerNumberLenghtIssue);
+      } else if (!value.match(/[0-9A-Za-z]+/)) {
+        validations.addError(field, errorsTexts.customerNumberContentIssue);
+      }
     },
     repeatCustomerNumber: (value) => {
-      const field = "repeatCustomerNumber";
+      const field = 'repeatCustomerNumber';
       validations.standardValidation(field, value);
       if (value !== form.customerNumber) {
         validations.addError(field, errorsTexts.customerNumberEnterTwice);
       }
     },
     customerFirstName: (value) => {
-      const field = "customerFirstName";
+      const field = 'customerFirstName';
       validations.standardValidation(field, value);
+
+      if (value) {
+        if (!value.trim()) {
+          validations.addError(field, errorsTexts.onlySpaceForbidden)
+        }
+      }
     },
     customerLastName: (value) => {
-      const field = "customerLastName";
+      const field = 'customerLastName';
       validations.standardValidation(field, value);
+
+      if (value) {
+        if (!value.trim()) {
+          validations.addError(field, errorsTexts.onlySpaceForbidden)
+        }
+      }
     },
     propertyAddress: (value) => {
-      const field = "propertyAddress";
+      const field = 'propertyAddress';
       validations.standardValidation(field, value);
     },
     customerEmail: (value) => {
-      const field = "customerEmail";
+      const field = 'customerEmail';
       validations.setTouched(field);
 
       // source https://regexr.com/3e48o
-      if (value && !value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
-        validations.addError(field, errorsTexts.emailDontMatch);
+      if (value) {
+        if (!value.match(/^[\w-\.]{1,64}@(?:[\w-]+\.)+[\w-]{2,4}$/)) {
+          validations.addError(field, errorsTexts.emailDontMatch)
+        }
+        if (value.length > 129) {
+          validations.addError(field, errorsTexts.maxLengthExceed);
+        }
       }
-
-      console.log(errors);
     },
     customerMobile: (value) => {
-      const field = "customerMobile";
+      const field = 'customerMobile';
       validations.standardValidation(field, value);
     },
-  };
+  }
+
+  const format = {
+    customerFirstName: (value) => {
+      return value.substring(0, 49);
+    },
+    customerLastName: (value) => {
+      return value.substring(0, 49);
+    },
+  }
 
   const handleInformation = (name, value) => {
+    const formattedValue = format[name]?.(value) || value;
     setForm({
       ...form,
-      [name]: value,
+      [name]: formattedValue
     });
-    validations[name](value);
+    validations[name](formattedValue);
   };
 
   const leftColumn = Data.slice(0, 4);
   const rightColumn = Data.slice(4, 7);
   return (
-    <Grid container spacing={{ md: "90px", sm: 0 }}>
+    <Grid container spacing={{ md: '90px', sm: 0 }}>
       <Grid item xs={12} md={6}>
         {leftColumn.map((element) => (
-          <div key={`lf-${element.name}`}>{generateTextField(element, errors, handleInformation)}</div>
+          <div key={`lf-${element.name}`}>
+            <MyTextField element={element} errors={errors} onChange={handleInformation} />
+          </div>
         ))}
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={6} >
         {rightColumn.map((element) => (
-          <div key={`rg-${element.name}`}>{generateTextField(element, errors, handleInformation)}</div>
+          <div key={`rg-${element.name}`}>
+            <MyTextField element={element} errors={errors} onChange={handleInformation} />
+          </div>
         ))}
         <MobileInput value={form["customerMobile"]} label="Customer Mobile Number" onChange={handleInformation} />
         <Summary subtotal="2500.00" fee="45" total="2405.00" />
@@ -129,50 +159,5 @@ const DataGrid = () => {
     </Grid>
   );
 };
-
-function generateTextField(element, errors, onChange) {
-  return (
-    <>
-      <Typography
-        variant="h5"
-        component="div"
-        sx={{
-          marginBottom: "8px",
-          marginTop: "36px",
-          fontWeight: "700",
-          fontSize: "16px",
-        }}
-      >
-        {element.label}
-      </Typography>
-      <TextField
-        error={errors[element.name] !== null && !!errors[element.name].length}
-        helperText={ErrorTextField(errors[element.name])}
-        id={element.name}
-        margin="dense"
-        onChange={({ target: { value } }) => onChange(element.name, value)}
-        fullWidth
-        variant="outlined"
-        placeholder={element.example}
-        InputLabelProps={{
-          shrink: false,
-        }}
-      />
-    </>
-  );
-}
-
-function ErrorTextField(elementErrorValue) {
-  if (!elementErrorValue || !elementErrorValue.length) return "";
-
-  return (
-    <span style={{ position: "relative" }}>
-      <span style={{ position: "absolute", left: "-12px", paddingTop: "1px" }}>
-        <ErrorIcon />
-      </span>
-      <span style={{ paddingLeft: "16px" }}>{elementErrorValue.join("\n")}</span>
-    </span>
-  );
-}
 
 export default DataGrid;
