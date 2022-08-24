@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import ErrorIcon from "@mui/icons-material/Error";
 import { Grid, Typography, TextField } from "@mui/material";
 
-import MobileInput from "./MobilePhone";
-import Summary from "./Summary";
+import MobileInput from "../../../MobilePhone";
 
 const DataGrid = () => {
   const Data = [
@@ -124,7 +123,6 @@ const DataGrid = () => {
           <div key={`rg-${element.name}`}>{generateTextField(element, errors, handleInformation)}</div>
         ))}
         <MobileInput value={form["customerMobile"]} label="Customer Mobile Number" onChange={handleInformation} />
-        <Summary subtotal="2500.00" fee="45" total="2405.00" />
       </Grid>
     </Grid>
   );
@@ -138,9 +136,9 @@ function generateTextField(element, errors, onChange) {
         component="div"
         sx={{
           marginBottom: "8px",
-          marginTop: "36px",
+          marginTop: "24px",
           fontWeight: "700",
-          fontSize: "16px",
+          fontSize: "14px",
         }}
       >
         {element.label}

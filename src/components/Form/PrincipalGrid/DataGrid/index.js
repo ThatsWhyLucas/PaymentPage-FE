@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import ErrorIcon from "@mui/icons-material/Error";
 import { Grid, Typography, TextField } from "@mui/material";
 
-import MobileInput from "./MobilePhone";
-import Summary from "./Summary";
+import MobileInput from "../../../MobilePhone";
+import Summary from "../../../Summary";
 
 const DataGrid = () => {
   const Data = [
