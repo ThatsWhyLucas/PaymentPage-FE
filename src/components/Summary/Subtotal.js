@@ -5,13 +5,13 @@ function Subtotal({ subtotal }) {
   return (
     <div>
       <Grid container spacing={"100"}>
-        <Grid item xs={6} sx={{ marginTop: "12px" }}>
-          <Typography variant="h5" component="div" sx={{ color: "#677489", fontWeight: "700", fontSize: "16px" }}>
+        <Grid item xs={6} className="subtotal_grid">
+          <Typography variant="h5" component="div" className="subtotal_title">
             Subtotal
           </Typography>
         </Grid>
-        <Grid item xs={6} sx={{ marginTop: "12px" }}>
-          <Typography variant="h5" component="div" sx={{ fontWeight: "700", fontSize: "16px" }}>
+        <Grid item xs={6} className="subtotal_grid">
+          <Typography variant="h5" component="div" className="subtotal_value">
             ${subtotal}
           </Typography>
         </Grid>
