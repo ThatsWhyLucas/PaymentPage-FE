@@ -8,14 +8,6 @@ import MyTextField from "../../../MyTextField";
 import errorsTexts from "../../../../common/errorsTexts";
 
 const DataGrid = ({ setPrice }) => {
-  const Data = [
-    { name: "customerNumber", label: "Customer Number", example: "A1B2C3" },
-    { name: "repeatCustomerNumber", label: "Repeat customer Number", example: "A1B2C3" },
-    { name: "customerFirstName", label: "Customer First Name", example: "Ex. Jane" },
-    { name: "customerLastName", label: "Customer Last Name", example: "Ex. Cooper" },
-    { name: "propertyAddress", label: "Property Address", example: "Ex. Jane Cooper" },
-    { name: "customerEmail", label: "Customer Email", example: "Ex. Jane Cooper" },
-  ];
 
   const [form, setForm] = useState({
     customerNumber: "",
@@ -26,6 +18,15 @@ const DataGrid = ({ setPrice }) => {
     customerEmail: "",
     customerMobile: "",
   });
+
+  const data = [
+    { name: "customerNumber", label: "Customer Number", example: "A1B2C3", value: form.customerNumber },
+    { name: "repeatCustomerNumber", label: "Repeat customer Number", example: "A1B2C3", value: form.repeatCustomerNumber },
+    { name: "customerFirstName", label: "Customer First Name", example: "Ex. Jane", value: form.customerFirstName },
+    { name: "customerLastName", label: "Customer Last Name", example: "Ex. Cooper", value: form.customerLastName },
+    { name: "propertyAddress", label: "Property Address", example: "Ex. Jane Cooper", value: form.propertyAddress },
+    { name: "customerEmail", label: "Customer Email", example: "Ex. Jane Cooper", value: form.customerEmail },
+  ];
 
   const [errors, setError] = useState({
     customerNumber: null,
@@ -136,8 +137,8 @@ const DataGrid = ({ setPrice }) => {
     validations[name](formattedValue);
   };
 
-  const leftColumn = Data.slice(0, 4);
-  const rightColumn = Data.slice(4, 7);
+  const leftColumn = data.slice(0, 4);
+  const rightColumn = data.slice(4, 7);
   return (
     <Grid container spacing={{ md: '90px', sm: 0 }}>
       <Grid item xs={12} md={6}>
