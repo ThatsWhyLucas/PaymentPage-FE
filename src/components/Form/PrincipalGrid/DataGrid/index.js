@@ -138,7 +138,7 @@ function generateTextField(element, errors, onChange) {
         component="div"
         sx={{
           marginBottom: "8px",
-          marginTop: "36px",
+          marginTop: "24px",
           fontWeight: "700",
           fontSize: "16px",
         }}
