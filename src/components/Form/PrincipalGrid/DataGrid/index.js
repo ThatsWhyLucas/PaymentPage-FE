@@ -164,17 +164,4 @@ const DataGrid = ({ setPrice }) => {
   );
 };
 
-function ErrorTextField(elementErrorValue) {
-  if (!elementErrorValue || !elementErrorValue.length) return "";
-
-  return (
-    <span style={{ position: "relative" }}>
-      <span style={{ position: "absolute", left: "-12px", paddingTop: "1px" }}>
-        <ErrorIcon />
-      </span>
-      <span style={{ paddingLeft: "16px" }}>{elementErrorValue.join("\n")}</span>
-    </span>
-  );
-}
-
 export default DataGrid;
