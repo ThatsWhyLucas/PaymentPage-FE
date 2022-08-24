@@ -1,9 +1,6 @@
 import React from "react";
 import { Card, CardContent } from "@mui/material";
 
-import DialogSomethingWrong from "../MyDialog/DialogSomethingWrong";
-import DialogThanks from "../MyDialog/DialogThanks";
-
 import PrincipalGrid from "./PrincipalGrid";
 import MobileGrid from "./MobileGrid";
 

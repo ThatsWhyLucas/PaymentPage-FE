@@ -2,6 +2,7 @@ import React from "react";
 import MyDialog from ".";
 
 const DialogThanks = ({ open, onSubmit }) => {
+  /* This dialog should redirect to https://hdc.gov.tt/ */
   return (
     <MyDialog
       title='All its good! Thanks for order :)'
