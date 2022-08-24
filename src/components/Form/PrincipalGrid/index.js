@@ -6,7 +6,7 @@ import MyThemeProvider from "../../MyThemeProvider";
 
 import { Typography, Box, Grid, Button, FormControlLabel, Checkbox } from "@mui/material";
 
-const PrincipalGrid = ({ price, setPrice, subtotal }) => {
+const PrincipalGrid = ({ price, setPrice, subtotal, setSubtotal }) => {
   return (
     <div>
       <Typography variant="h5" component="div" className="grid_title">
@@ -15,7 +15,7 @@ const PrincipalGrid = ({ price, setPrice, subtotal }) => {
       <DialogCreditCardInfo />
       <Box>
         <MyThemeProvider>
-          <DataGrid setPrice={setPrice} subtotal={subtotal} />
+          <DataGrid setPrice={setPrice} subtotal={subtotal} setSubtotal={setSubtotal} />
         </MyThemeProvider>
       </Box>
 

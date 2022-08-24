@@ -7,7 +7,7 @@ import Summary from "../../../Summary";
 import MyTextField from "../../../MyTextField";
 import errorsTexts from "../../../../common/errorsTexts";
 
-const DataGrid = ({ setPrice, subtotal }) => {
+const DataGrid = ({ setPrice, subtotal, setSubtotal }) => {
   const [form, setForm] = useState({
     customerNumber: "",
     repeatCustomerNumber: "",
