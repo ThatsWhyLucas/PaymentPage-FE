@@ -6,7 +6,7 @@ import MyThemeProvider from "../../MyThemeProvider";
 
 import { Typography, Box, Grid, Button, FormControlLabel, Checkbox } from "@mui/material";
 
-const MobileGrid = () => {
+const MobileGrid = ({ price }) => {
   return (
     <div className="mobile_grid">
       <Typography variant="h5" component="div" sx={{ marginBottom: "14px", fontWeight: "700", fontSize: "16px" }}>
@@ -37,7 +37,7 @@ const MobileGrid = () => {
             }}
           >
             <Button fullWidth variant="contained" sx={{ fontSize: "16px", textTransform: "capitalize" }}>
-              Pay $2405.00
+              Pay ${price}
             </Button>
           </Grid>
           <Grid

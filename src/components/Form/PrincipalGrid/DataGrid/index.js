@@ -6,7 +6,7 @@ import { Grid, Typography, TextField } from "@mui/material";
 import MobileInput from "../../../MobilePhone";
 import Summary from "../../../Summary";
 
-const DataGrid = () => {
+const DataGrid = ({ setPrice }) => {
   const Data = [
     { name: "customerNumber", label: "Customer Number", example: "A1B2C3", error: false },
     { name: "repeatCustomerNumber", label: "Repeat customer Number", example: "A1B2C3", error: false },
@@ -124,7 +124,7 @@ const DataGrid = () => {
           <div key={`rg-${element.name}`}>{generateTextField(element, errors, handleInformation)}</div>
         ))}
         <MobileInput value={form["customerMobile"]} label="Customer Mobile Number" onChange={handleInformation} />
-        <Summary subtotal="2500.00" fee="45" total="2405.00" />
+        <Summary subtotal={2500} setPrice={setPrice} />
       </Grid>
     </Grid>
   );

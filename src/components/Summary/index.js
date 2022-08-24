@@ -3,12 +3,19 @@ import Subtotal from "./Subtotal";
 import Fees from "./Fees";
 import Total from "./Total";
 
-const Summary = ({ subtotal, fee, total }) => {
+const Summary = ({ subtotal, setPrice }) => {
+  const calculateFee = (subtotal) => {
+    const calculation = (subtotal + 0.3) / 0.971;
+    const fee = Math.abs(parseFloat(subtotal - calculation).toFixed(2));
+    setPrice(subtotal - fee);
+    return fee;
+  };
+
   return (
     <div className="totals">
       <Subtotal subtotal={subtotal} />
-      <Fees fee={fee} />
-      <Total total={total} />
+      <Fees fee={calculateFee(subtotal)} />
+      <Total total={subtotal - calculateFee(subtotal)} />
     </div>
   );
 };
