@@ -2,9 +2,7 @@
   margin-bottom: 16px !important;
   font-weight: 700 !important;
   font-size: 16px !important;
-}
-.button_grid {
-  margin-top: 24px !important;
-  font-size: 16px !important;
-  text-transform: capitalize !important;
+  @media screen and (max-width: 480px) {
+    font-size: 14px !important;
+  }
 }
