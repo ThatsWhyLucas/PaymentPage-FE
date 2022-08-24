@@ -8,7 +8,6 @@ import MyTextField from "../../../MyTextField";
 import errorsTexts from "../../../../common/errorsTexts";
 
 const DataGrid = ({ setPrice }) => {
-
   const [form, setForm] = useState({
     customerNumber: "",
     repeatCustomerNumber: "",
@@ -21,7 +20,12 @@ const DataGrid = ({ setPrice }) => {
 
   const data = [
     { name: "customerNumber", label: "Customer Number", example: "A1B2C3", value: form.customerNumber },
-    { name: "repeatCustomerNumber", label: "Repeat customer Number", example: "A1B2C3", value: form.repeatCustomerNumber },
+    {
+      name: "repeatCustomerNumber",
+      label: "Repeat customer Number",
+      example: "A1B2C3",
+      value: form.repeatCustomerNumber,
+    },
     { name: "customerFirstName", label: "Customer First Name", example: "Ex. Jane", value: form.customerFirstName },
     { name: "customerLastName", label: "Customer Last Name", example: "Ex. Cooper", value: form.customerLastName },
     { name: "propertyAddress", label: "Property Address", example: "Ex. Jane Cooper", value: form.propertyAddress },
@@ -37,7 +41,6 @@ const DataGrid = ({ setPrice }) => {
     customerEmail: null,
     customerMobile: null,
   });
-
 
   const validations = {
     setTouched: (name) => {
@@ -59,7 +62,7 @@ const DataGrid = ({ setPrice }) => {
     },
 
     customerNumber: (value) => {
-      const field = 'customerNumber';
+      const field = "customerNumber";
       validations.standardValidation(field, value);
       // validate HDC spec
       if (value.length !== 16) {
@@ -69,44 +72,44 @@ const DataGrid = ({ setPrice }) => {
       }
     },
     repeatCustomerNumber: (value) => {
-      const field = 'repeatCustomerNumber';
+      const field = "repeatCustomerNumber";
       validations.standardValidation(field, value);
       if (value !== form.customerNumber) {
         validations.addError(field, errorsTexts.customerNumberEnterTwice);
       }
     },
     customerFirstName: (value) => {
-      const field = 'customerFirstName';
+      const field = "customerFirstName";
       validations.standardValidation(field, value);
 
       if (value) {
         if (!value.trim()) {
-          validations.addError(field, errorsTexts.onlySpaceForbidden)
+          validations.addError(field, errorsTexts.onlySpaceForbidden);
         }
       }
     },
     customerLastName: (value) => {
-      const field = 'customerLastName';
+      const field = "customerLastName";
       validations.standardValidation(field, value);
 
       if (value) {
         if (!value.trim()) {
-          validations.addError(field, errorsTexts.onlySpaceForbidden)
+          validations.addError(field, errorsTexts.onlySpaceForbidden);
         }
       }
     },
     propertyAddress: (value) => {
-      const field = 'propertyAddress';
+      const field = "propertyAddress";
       validations.standardValidation(field, value);
     },
     customerEmail: (value) => {
-      const field = 'customerEmail';
+      const field = "customerEmail";
       validations.setTouched(field);
 
       // source https://regexr.com/3e48o
       if (value) {
         if (!value.match(/^[\w-\.]{1,64}@(?:[\w-]+\.)+[\w-]{2,4}$/)) {
-          validations.addError(field, errorsTexts.emailDontMatch)
+          validations.addError(field, errorsTexts.emailDontMatch);
         }
         if (value.length > 129) {
           validations.addError(field, errorsTexts.maxLengthExceed);
@@ -114,10 +117,10 @@ const DataGrid = ({ setPrice }) => {
       }
     },
     customerMobile: (value) => {
-      const field = 'customerMobile';
+      const field = "customerMobile";
       validations.standardValidation(field, value);
     },
-  }
+  };
 
   const format = {
     customerFirstName: (value) => {
@@ -126,13 +129,13 @@ const DataGrid = ({ setPrice }) => {
     customerLastName: (value) => {
       return value.substring(0, 49);
     },
-  }
+  };
 
   const handleInformation = (name, value) => {
     const formattedValue = format[name]?.(value) || value;
     setForm({
       ...form,
-      [name]: formattedValue
+      [name]: formattedValue,
     });
     validations[name](formattedValue);
   };
@@ -140,7 +143,7 @@ const DataGrid = ({ setPrice }) => {
   const leftColumn = data.slice(0, 4);
   const rightColumn = data.slice(4, 7);
   return (
-    <Grid container spacing={{ md: '90px', sm: 0 }}>
+    <Grid container spacing={{ md: "90px", sm: 0 }}>
       <Grid item xs={12} md={6}>
         {leftColumn.map((element) => (
           <div key={`lf-${element.name}`}>
@@ -148,7 +151,7 @@ const DataGrid = ({ setPrice }) => {
           </div>
         ))}
       </Grid>
-      <Grid item xs={12} md={6} >
+      <Grid item xs={12} md={6}>
         {rightColumn.map((element) => (
           <div key={`rg-${element.name}`}>
             <MyTextField element={element} errors={errors} onChange={handleInformation} />
@@ -160,38 +163,6 @@ const DataGrid = ({ setPrice }) => {
     </Grid>
   );
 };
-
-function generateTextField(element, errors, onChange) {
-  return (
-    <>
-      <Typography
-        variant="h5"
-        component="div"
-        sx={{
-          marginBottom: "8px",
-          marginTop: "24px",
-          fontWeight: "700",
-          fontSize: "16px",
-        }}
-      >
-        {element.label}
-      </Typography>
-      <TextField
-        error={errors[element.name] !== null && !!errors[element.name].length}
-        helperText={ErrorTextField(errors[element.name])}
-        id={element.name}
-        margin="dense"
-        onChange={({ target: { value } }) => onChange(element.name, value)}
-        fullWidth
-        variant="outlined"
-        placeholder={element.example}
-        InputLabelProps={{
-          shrink: false,
-        }}
-      />
-    </>
-  );
-}
 
 function ErrorTextField(elementErrorValue) {
   if (!elementErrorValue || !elementErrorValue.length) return "";

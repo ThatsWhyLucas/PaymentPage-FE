@@ -6,6 +6,16 @@
 
 @import "_fonts.scss";
 
+@import "form.scss";
+
+@import "data_grid.scss";
+
+@import "mobile_input.scss";
+
+@import "text_field.scss";
+
+@import "summary.scss";
+
 body {
   background: linear-gradient(180deg, #f8fafc 18.16%, rgba(248, 250, 252, 0.95) 100%);
   padding: 5% 10% 5% 10%;
@@ -13,6 +23,12 @@ body {
     padding: 0;
   }
   font-family: "Satoshi", sans-serif;
+}
+
+.app_container {
+  overflow-x: hidden;
+  font-family: "Satoshi";
+  z-index: 2;
 }
 
 .vector_container {
@@ -88,50 +104,26 @@ body {
 
 .detailsCard {
   padding: 40px 40px 16px 40px;
-}
-
-.mobile_grid {
-  display: none;
-}
-
-.mobile_input {
-  margin-bottom: 8px !important;
-  margin-top: 36px !important;
-  font-weight: 700 !important;
-  font-size: 16px !important;
-  padding: 16.5px 14px !important;
+  &_content {
+    padding: 0 !important;
+  }
+  &_title {
+    margin-bottom: 16px !important;
+    font-weight: 700 !important;
+    font-size: 24px !important;
+  }
+  &_body {
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    width: 70% !important;
+  }
 }
 
 .react-tel-input .form-control {
   width: 100% !important;
 }
 
-.mobile_summary {
-  display: none;
-}
-
-.totals {
-  margin-top: 12px;
-}
-
 @media screen and (max-width: 480px) {
-  .mobile_summary {
-    display: block;
-    margin-bottom: 24px;
-  }
-  .mobile_input {
-    margin-top: 24px !important;
-    font-size: 14px !important;
-  }
-  .form_body {
-    padding: 0 24px 0 24px;
-  }
-  .principal_grid {
-    display: none;
-  }
-  .mobile_grid {
-    display: block;
-  }
   .css-1wumnyl-MuiContainer-root {
     padding: 0 !important;
   }

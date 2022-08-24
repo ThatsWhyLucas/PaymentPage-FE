@@ -5,11 +5,11 @@ const DetailsCard = () => {
   return (
     <div>
       <Card className="detailsCard">
-        <CardContent sx={{ padding: "0" }} className="detailsCard_content">
-          <Typography variant="h5" component="div" sx={{ marginBottom: "16px", fontWeight: "700", fontSize: "24px" }}>
+        <CardContent className="detailsCard_content">
+          <Typography variant="h5" component="div" className="detailsCard_title">
             Payments Details
           </Typography>
-          <Typography variant="body1" sx={{ fontWeight: "500", fontSize: "16px", width: "70%" }}>
+          <Typography variant="body1" className="detailsCard_body">
             Cusk-eel Rasbora trout ray New World rivuline. Rattail tailor murray cod sardine; shrimpfish cherry salmon,
             temperate bass whitebait common carp horn shark, "African glass catfish golden loach yellowhead jawfish."
           </Typography>

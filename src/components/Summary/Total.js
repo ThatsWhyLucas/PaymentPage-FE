@@ -5,13 +5,13 @@ function Total({ total }) {
   return (
     <div>
       <Grid container spacing={"100px"}>
-        <Grid item xs={6} sx={{ marginTop: "12px" }}>
-          <Typography variant="h5" component="div" sx={{ fontWeight: "700", fontSize: "16px" }}>
+        <Grid item xs={6} className="total_grid">
+          <Typography variant="h5" component="div" className="total_value">
             Total
           </Typography>
         </Grid>
-        <Grid item xs={6} sx={{ marginTop: "12px" }}>
-          <Typography variant="h5" component="div" sx={{ fontWeight: "700", fontSize: "16px" }}>
+        <Grid item xs={6} className="total_grid" s>
+          <Typography variant="h5" component="div" className="total_value">
             ${total}
           </Typography>
         </Grid>

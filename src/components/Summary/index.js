@@ -12,7 +12,7 @@ const Summary = ({ subtotal, setPrice }) => {
   };
 
   return (
-    <div className="totals">
+    <div>
       <Subtotal subtotal={subtotal} />
       <Fees fee={calculateFee(subtotal)} />
       <Total total={subtotal - calculateFee(subtotal)} />

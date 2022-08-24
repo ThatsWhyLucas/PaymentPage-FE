@@ -5,13 +5,13 @@ function Fees({ fee }) {
   return (
     <div>
       <Grid container spacing={"100px"}>
-        <Grid item xs={6} sx={{ marginTop: "12px" }}>
-          <Typography variant="h5" component="div" sx={{ color: "#677489", fontWeight: "700", fontSize: "16px" }}>
+        <Grid item xs={6} className="fees_grid">
+          <Typography variant="h5" className="fees_title" component="div">
             Convenience Fee
           </Typography>
         </Grid>
-        <Grid item xs={6} sx={{ marginTop: "12px" }}>
-          <Typography variant="h5" component="div" sx={{ fontWeight: "700", fontSize: "16px" }}>
+        <Grid item xs={6} className="fees_grid">
+          <Typography variant="h5" className="fees_value" component="div">
             -${fee}
           </Typography>
         </Grid>
