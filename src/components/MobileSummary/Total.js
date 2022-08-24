@@ -4,20 +4,20 @@ import { Grid, Typography } from "@mui/material";
 function Total({ total }) {
   return (
     <div>
-      <Grid container spacing={"100px"}>
-        <Grid item xs={6} sx={{ marginTop: "180px", fontSize: "16px", fontWeight: "700px" }}>
-          <Typography variant="h5" component="div" sx={{ fontWeight: "700", fontSize: "16px" }}>
+      <Grid container spacing={"160px"}>
+        <Grid item xs={6} sx={{ marginTop: "12px" }}>
+          <Typography variant="h5" component="div" sx={{ fontWeight: "700", fontSize: "14px" }}>
             Total
           </Typography>
         </Grid>
-        <Grid item xs={6} sx={{ marginTop: "180px", fontSize: "16px", fontWeight: "700px" }}>
-          <Typography variant="h5" component="div" sx={{ fontWeight: "700", fontSize: "16px" }}>
+        <Grid item xs={6} sx={{ marginTop: "12px" }}>
+          <Typography variant="h5" component="div" sx={{ fontWeight: "700", fontSize: "14px" }}>
             ${total}
           </Typography>
         </Grid>
       </Grid>
     </div>
   );
-};
+}
 
 export default Total;

@@ -2,7 +2,7 @@ import React from "react";
 import Subtotal from "./Subtotal";
 import Fees from "./Fees";
 import Total from "./Total";
-import { Card, CardContent } from "@mui/material";
+import { Grid, Card, CardContent, Typography } from "@mui/material";
 
 const MobileSummary = ({ subtotal, setPrice }) => {
   const calculateFee = (subtotal) => {
@@ -12,16 +12,39 @@ const MobileSummary = ({ subtotal, setPrice }) => {
     return fee;
   };
 
+  const Header = () => {
+    return (
+      <Grid container spacing={"32px"}>
+        <Grid item xs={8}>
+          <Typography variant="h5" component="div" sx={{ padding: "16px", fontWeight: "700", fontSize: "18px" }}>
+            Show Order Summary
+          </Typography>
+        </Grid>
+        <Grid item xs={4}>
+          <Typography
+            variant="h5"
+            component="div"
+            sx={{ padding: "20px 20px 0 0", fontWeight: "700", fontSize: "16px" }}
+          >
+            ${subtotal - calculateFee(subtotal)}
+          </Typography>
+        </Grid>
+      </Grid>
+    );
+  };
+
   return (
-    <div>
+    <div className="mobile_summary">
       <Card>
-        <CardContent sx={{ padding: "0", width: "100%" }}>
+        <Header />
+
+        <CardContent sx={{ width: "100%" }}>
           <Subtotal subtotal={subtotal} />
           <Fees fee={calculateFee(subtotal)} />
         </CardContent>
       </Card>
       <Card>
-        <CardContent sx={{ padding: "0", width: "100%" }}>
+        <CardContent sx={{ width: "100%" }}>
           <Total total={subtotal - calculateFee(subtotal)} />
         </CardContent>
       </Card>
