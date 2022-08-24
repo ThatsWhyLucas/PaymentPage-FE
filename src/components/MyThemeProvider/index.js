@@ -25,8 +25,10 @@ const theme = createTheme({
     },
     MuiButton: {
       styleOverrides: {
-        outlined:{
+        root:{
           borderRadius: '12px',
+        },
+        outlined:{
           borderWidth: '2px'
         }
       }
@@ -35,7 +37,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           whiteSpace: 'break-spaces',
-          fontWeight: '500',
+          fontWeight: '700',
           fontSize: '14px'
         }
       }
