@@ -27,3 +27,29 @@
     margin-top: 16px !important;
   }
 }
+
+.menu_toggler_section {
+  margin: 12px 0 !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+}
+
+.menu_toggler_title {
+  padding: 11px !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+.arrow_top {
+  margin-top: 17px !important;
+  border: 1px solid #677489;
+  border-width: 0 0 2px 2px;
+  width: 10px;
+  height: 10px;
+  line-height: 0;
+  font-size: 0;
+  -webkit-transform: rotate(-225deg);
+  -ms-transform: rotate(-225deg);
+  -o-transform: rotate(-225deg);
+  transform: rotate(-225deg);
+}
