@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 import DialogCreditCardInfo from "../../DialogCreditCardInfo";
 import DataGrid from "./DataGrid";
 import MyThemeProvider from "../../MyThemeProvider";
 
-import { Typography, Box, Grid, Button, FormControlLabel, Checkbox } from "@mui/material";
+import { Typography, Box, Grid, Button } from "@mui/material";
 
 const PrincipalGrid = () => {
+  const [price, setPrice] = useState(0);
+
   return (
     <div className="principal_grid">
       <Typography variant="h5" component="div" sx={{ marginBottom: "16px", fontWeight: "700", fontSize: "16px" }}>
@@ -15,7 +17,7 @@ const PrincipalGrid = () => {
       <DialogCreditCardInfo />
       <Box sx={{ width: "100%" }}>
         <MyThemeProvider>
-          <DataGrid />
+          <DataGrid setPrice={setPrice} />
         </MyThemeProvider>
       </Box>
 
@@ -46,7 +48,7 @@ const PrincipalGrid = () => {
             }}
           >
             <Button fullWidth variant="contained" sx={{ fontSize: "16px", textTransform: "capitalize" }}>
-              Pay $2405.00
+              Pay ${price}
             </Button>
           </Grid>
         </MyThemeProvider>
