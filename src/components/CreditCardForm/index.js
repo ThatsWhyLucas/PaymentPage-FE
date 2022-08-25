@@ -2,7 +2,7 @@ import React from "react";
 import MyTextField from "../MyTextField";
 import errorsTexts from "../../common/errorsTexts";
 
-function CreditCardForm() {
+function CreditCardForm({ isInvalid }) {
   const [form, setForm] = React.useState({
     cardHolderName: '',
     cardNumber: '',
@@ -16,6 +16,15 @@ function CreditCardForm() {
     expiryDate: null,
     cvv: null,
   });
+
+  const hasErrors = () => {
+    return (
+      !errors.cardHolderName || errors.cardHolderName.length !== 0 ||
+      !errors.cardNumber || errors.cardNumber.length !== 0 ||
+      !errors.expiryDate || errors.expiryDate.length !== 0 ||
+      !errors.cvv || errors.cvv.length !== 0
+    )
+  }
 
   const validations = {
     setTouched: (name) => {
@@ -125,6 +134,7 @@ function CreditCardForm() {
       [name]: formattedValue
     });
     validations[name](formattedValue);
+    isInvalid(hasErrors());
   };
 
   return (
