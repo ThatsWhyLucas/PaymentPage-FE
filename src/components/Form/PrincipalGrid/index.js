@@ -17,7 +17,7 @@ const PrincipalGrid = ({ price, setPrice, subtotal, setSubtotal }) => {
       <DialogCreditCardInfo />
       <Box>
         <MyThemeProvider>
-          <DataGrid setPrice={setPrice} subtotal={subtotal} setSubtotal={setSubtotal} isInvalid={setDisallowPay} />
+          <DataGrid price={price} setPrice={setPrice} subtotal={subtotal} setSubtotal={setSubtotal} isInvalid={setDisallowPay} />
         </MyThemeProvider>
       </Box>
 

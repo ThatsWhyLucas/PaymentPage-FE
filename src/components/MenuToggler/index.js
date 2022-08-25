@@ -22,7 +22,7 @@ const MenuToggler = ({ price, setPrice, subtotal, setSubtotal }) => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Summary subtotal={subtotal} setPrice={setPrice} />
+          <Summary subtotal={subtotal} price={price} setPrice={setPrice} />
         </AccordionDetails>
       </Accordion>
 
