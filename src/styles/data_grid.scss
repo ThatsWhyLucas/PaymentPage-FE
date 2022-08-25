@@ -100,3 +100,21 @@
   height: 12px;
   margin-top: 16px;
 }
+
+.dialog_content {
+  width: 656px !important;
+  @media screen and (max-width: 480px) {
+    width: 310px !important;
+  }
+  padding-bottom: 0 !important;
+  white-space: pre-line !important;
+}
+
+.credit_text_field {
+  @media screen and (max-width: 480px) {
+    width: 262px !important;
+  }
+  width: 292px !important;
+  display: inline-block !important;
+  margin-right: 24px !important;
+}
