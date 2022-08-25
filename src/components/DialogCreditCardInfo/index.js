@@ -24,7 +24,7 @@ const DialogCreditCardInfo = ({ handleModal, show, card, setCard }) => {
               <CloseIcon />
             </IconButton>
           </DialogTitle>
-          <DialogContent style={{ borderTop: "solid 1px #00000012", width: "656px", paddingBottom: "0" }}>
+          <DialogContent className="dialog_content">
             <CreditCardForm card={card} setCard={setCard} />
           </DialogContent>
           <DialogActions>

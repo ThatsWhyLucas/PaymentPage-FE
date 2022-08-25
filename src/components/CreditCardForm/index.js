@@ -166,10 +166,10 @@ function CreditCardForm({ isInvalid, card, setCard }) {
         cardType={form.cardType}
       />
       <div>
-        <div style={{ width: "292px", display: "inline-block", marginRight: "24px" }}>
+        <div className="credit_text_field">
           <MyTextField element={textFields.expiryDate} errors={errors} onChange={onChange} />
         </div>
-        <div style={{ width: "292px", display: "inline-block" }}>
+        <div className="credit_text_field">
           <MyTextField element={textFields.cvv} errors={errors} onChange={onChange} />
         </div>
       </div>
