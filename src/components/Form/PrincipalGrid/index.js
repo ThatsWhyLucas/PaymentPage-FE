@@ -7,6 +7,8 @@ import MyThemeProvider from "../../MyThemeProvider";
 import { Typography, Box, Grid, Button, FormControlLabel, Checkbox } from "@mui/material";
 
 const PrincipalGrid = ({ price, setPrice, subtotal, setSubtotal }) => {
+  const [disallowPay, setDisallowPay] = React.useState(true);
+
   return (
     <div>
       <Typography variant="h5" component="div" className="grid_title">
@@ -15,7 +17,7 @@ const PrincipalGrid = ({ price, setPrice, subtotal, setSubtotal }) => {
       <DialogCreditCardInfo />
       <Box>
         <MyThemeProvider>
-          <DataGrid setPrice={setPrice} subtotal={subtotal} setSubtotal={setSubtotal} />
+          <DataGrid setPrice={setPrice} subtotal={subtotal} setSubtotal={setSubtotal} isInvalid={setDisallowPay} />
         </MyThemeProvider>
       </Box>
 
@@ -35,7 +37,7 @@ const PrincipalGrid = ({ price, setPrice, subtotal, setSubtotal }) => {
             </Button>
           </Grid>
           <Grid item xs={window.innerWidth < 480 ? 12 : 6}>
-            <Button fullWidth variant="contained" className="button_grid">
+            <Button disabled={disallowPay} fullWidth variant="contained" className="button_grid">
               Pay ${price}
             </Button>
           </Grid>

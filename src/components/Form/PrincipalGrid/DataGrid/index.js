@@ -7,7 +7,7 @@ import Summary from "../../../Summary";
 import MyTextField from "../../../MyTextField";
 import errorsTexts from "../../../../common/errorsTexts";
 
-const DataGrid = ({ setPrice, subtotal, setSubtotal }) => {
+const DataGrid = ({ setPrice, subtotal, setSubtotal, isInvalid }) => {
   const [form, setForm] = useState({
     customerNumber: "",
     repeatCustomerNumber: "",
@@ -41,6 +41,18 @@ const DataGrid = ({ setPrice, subtotal, setSubtotal }) => {
     customerEmail: null,
     customerMobile: null,
   });
+
+  const hasErrors = () => {
+    return (
+      !errors.customerNumber || errors.customerNumber.length !== 0 ||
+      !errors.repeatCustomerNumber || errors.repeatCustomerNumber.length !== 0 ||
+      !errors.customerFirstName || errors.customerFirstName.length !== 0 ||
+      !errors.customerLastName || errors.customerLastName.length !== 0 ||
+      !errors.propertyAddress || errors.propertyAddress.length !== 0 ||
+      !errors.customerEmail || errors.customerEmail.length !== 0 ||
+      !errors.customerMobile || errors.customerMobile.length !== 0
+    )
+  }
 
   const validations = {
     setTouched: (name) => {
@@ -131,13 +143,14 @@ const DataGrid = ({ setPrice, subtotal, setSubtotal }) => {
     },
   };
 
-  const handleInformation = (name, value) => {
+  const onChange = (name, value) => {
     const formattedValue = format[name]?.(value) || value;
     setForm({
       ...form,
       [name]: formattedValue,
     });
     validations[name](formattedValue);
+    isInvalid(hasErrors());
   };
 
   const leftColumn = data.slice(0, 4);
@@ -147,17 +160,17 @@ const DataGrid = ({ setPrice, subtotal, setSubtotal }) => {
       <Grid item xs={12} md={6}>
         {leftColumn.map((element) => (
           <div key={`lf-${element.name}`}>
-            <MyTextField element={element} errors={errors} onChange={handleInformation} />
+            <MyTextField element={element} errors={errors} onChange={onChange} />
           </div>
         ))}
       </Grid>
       <Grid item xs={12} md={6}>
         {rightColumn.map((element) => (
           <div key={`rg-${element.name}`}>
-            <MyTextField element={element} errors={errors} onChange={handleInformation} />
+            <MyTextField element={element} errors={errors} onChange={onChange} />
           </div>
         ))}
-        <MobileInput value={form["customerMobile"]} label="Customer Mobile Number" onChange={handleInformation} />
+        <MobileInput value={form["customerMobile"]} label="Customer Mobile Number" onChange={onChange} />
         <Summary subtotal={subtotal} setPrice={setPrice} />
       </Grid>
     </Grid>
