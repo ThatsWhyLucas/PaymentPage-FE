@@ -2,13 +2,15 @@ import React from "react";
 import MyTextField from "../MyTextField";
 import errorsTexts from "../../common/errorsTexts";
 
-function CreditCardForm({ isInvalid }) {
-  const [form, setForm] = React.useState({
-    cardHolderName: '',
-    cardNumber: '',
-    expiryDate: '',
-    cvv: '',
-  });
+import valid from "card-validator";
+
+function CreditCardForm({ isInvalid, card, setCard }) {
+  const [form, setForm] = React.useState(card);
+  const [cardType, setCardType] = React.useState("");
+
+  React.useEffect(() => {
+    setForm(card);
+  }, card);
 
   const [errors, setError] = React.useState({
     cardHolderName: null,
@@ -19,12 +21,16 @@ function CreditCardForm({ isInvalid }) {
 
   const hasErrors = () => {
     return (
-      !errors.cardHolderName || errors.cardHolderName.length !== 0 ||
-      !errors.cardNumber || errors.cardNumber.length !== 0 ||
-      !errors.expiryDate || errors.expiryDate.length !== 0 ||
-      !errors.cvv || errors.cvv.length !== 0
-    )
-  }
+      !errors.cardHolderName ||
+      errors.cardHolderName.length !== 0 ||
+      !errors.cardNumber ||
+      errors.cardNumber.length !== 0 ||
+      !errors.expiryDate ||
+      errors.expiryDate.length !== 0 ||
+      !errors.cvv ||
+      errors.cvv.length !== 0
+    );
+  };
 
   const validations = {
     setTouched: (name) => {
@@ -45,27 +51,26 @@ function CreditCardForm({ isInvalid }) {
       validations.validateRequired(field, value);
     },
     cardHolderName: (value) => {
-      const field = 'cardHolderName';
+      const field = "cardHolderName";
       validations.standardValidation(field, value);
     },
     cardNumber: (value) => {
-      const field = 'cardNumber';
+      const field = "cardNumber";
       validations.standardValidation(field, value);
 
       if (
-        value.startsWith('3') && value.replace(/ /g, '').length !== 15
-        || !value.startsWith('3') && value.replace(/ /g, '').length !== 16
+        (value.startsWith("3") && value.replace(/ /g, "").length !== 15) ||
+        (!value.startsWith("3") && value.replace(/ /g, "").length !== 16)
       ) {
-        validations.addError(field, errorsTexts.invalidCCLenght)
+        validations.addError(field, errorsTexts.invalidCCLenght);
       }
     },
     expiryDate: (value) => {
-      const field = 'expiryDate';
+      const field = "expiryDate";
       validations.standardValidation(field, value);
-
     },
     cvv: (value) => {
-      const field = 'cvv';
+      const field = "cvv";
       validations.standardValidation(field, value);
 
       const lenghtCvv = form.cardNumber.startsWith(3) ? 4 : 3;
@@ -74,7 +79,7 @@ function CreditCardForm({ isInvalid }) {
         validations.addError(field, errorsTexts.invalidCCLenght);
       }
     },
-  }
+  };
 
   const textFields = {
     cardHolderName: {
@@ -99,39 +104,48 @@ function CreditCardForm({ isInvalid }) {
       name: "cvv",
       label: "Security code",
       example: "***",
-      type: 'password',
+      type: "password",
       value: form.cvv,
     },
   };
 
   const format = {
     cardNumber(value) {
+      const numberValidation = valid.number(value);
+      if (numberValidation.card) {
+        setCardType(numberValidation.card.type);
+      }
       if (!value) return value;
-      if (value.startsWith('3')) {
+      if (value.startsWith("3")) {
         const [, g1, g2, g3] = value.match(/([0-9]{1,4}) ?([0-9]{0,6}) ?([0-9]{0,5})/);
-        return [g1, g2, g3].join(' ').trim();
+        return [g1, g2, g3].join(" ").trim();
       } else {
-        return value.match(/([0-9]{1,4})/g).join(' ').substr(0, 19);
+        return value
+          .match(/([0-9]{1,4})/g)
+          .join(" ")
+          .substr(0, 19);
       }
     },
     expiryDate(value) {
       const matchResult = value.match(/(10|11|12|01|02|03|04|05|06|07|08|09)\/?([0-9]{2})/);
       if (matchResult) {
         const [, month, year] = matchResult;
-        return month + '/' + year;
+        return month + "/" + year;
       }
       return value;
     },
     cvv: (value) => {
       return value.substring(0, 4);
-    }
+    },
   };
 
   const onChange = (name, value) => {
     const formattedValue = format[name]?.(value) || value;
-    setForm({
+    setCard({
       ...form,
-      [name]: formattedValue
+      [name]: formattedValue,
+      ["cardType"]: cardType ? cardType : "",
+      ["lastFour"]: name === "cardNumber" && card.cardNumber.length >= 12 ? value.slice(15, 19) : "",
     });
     validations[name](formattedValue);
     isInvalid(hasErrors());
@@ -139,34 +153,24 @@ function CreditCardForm({ isInvalid }) {
 
   return (
     <div>
-      <MyTextField
-        element={textFields.cardHolderName}
-        errors={errors}
-        onChange={onChange}
-      />
+      <MyTextField element={textFields.cardHolderName} errors={errors} onChange={onChange} />
       <MyTextField
         element={textFields.cardNumber}
         errors={errors}
         onChange={onChange}
+        adornment={true}
+        cardType={form.cardType}
       />
       <div>
-        <div style={{ width: '292px', display: 'inline-block', marginRight: '24px' }}>
-          <MyTextField
-            element={textFields.expiryDate}
-            errors={errors}
-            onChange={onChange}
-          />
+        <div style={{ width: "292px", display: "inline-block", marginRight: "24px" }}>
+          <MyTextField element={textFields.expiryDate} errors={errors} onChange={onChange} />
         </div>
-        <div style={{ width: '292px', display: 'inline-block' }}>
-          <MyTextField
-            element={textFields.cvv}
-            errors={errors}
-            onChange={onChange}
-          />
+        <div style={{ width: "292px", display: "inline-block" }}>
+          <MyTextField element={textFields.cvv} errors={errors} onChange={onChange} />
         </div>
       </div>
-    </div >
+    </div>
   );
-};
+}
 
 export default CreditCardForm;

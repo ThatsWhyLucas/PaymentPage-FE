@@ -3,10 +3,19 @@ import React, { useState } from "react";
 import { Grid, Radio, Typography } from "@mui/material";
 import DialogCreditCardInfo from "../DialogCreditCardInfo";
 import Amount from "../Amount";
+import PaymentIcon from "react-payment-icons";
 
 const PaymentMethod = ({ subtotal, setSubtotal }) => {
   const [selectedValue, setSelectedValue] = useState("a");
   const [show, setShow] = useState(false);
+  const [card, setCard] = useState({
+    cardHolderName: "",
+    cardNumber: "",
+    cardType: "",
+    lastFour: "****",
+    expiryDate: "",
+    cvv: "",
+  });
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
@@ -17,7 +26,7 @@ const PaymentMethod = ({ subtotal, setSubtotal }) => {
 
   return (
     <div className="payment_method_container">
-      <DialogCreditCardInfo show={show} handleModal={handleModal} />
+      <DialogCreditCardInfo show={show} handleModal={handleModal} card={card} setCard={setCard} />
       <Grid container>
         <Grid item xs={3} className="method_left">
           <div className={selectedValue === "a" ? "method_box selected" : "method_box"}>
@@ -33,15 +42,16 @@ const PaymentMethod = ({ subtotal, setSubtotal }) => {
               </Grid>
               <Grid item xs={7} className="cc_number">
                 <Typography variant="h5" component="div" className="method_title">
-                  **** 8304
+                  **** {card.lastFour}
                 </Typography>
                 <Typography variant="h5" component="div" className="method_action" onClick={() => handleModal()}>
-                  Visa - Edit
+                  {card.cardType.charAt(0).toUpperCase() + card.cardType.slice(1)}
+                  {card.cardType ? "-" : ""} Edit
                 </Typography>
               </Grid>
               <Grid item xs={2} sx={{ marginTop: "12px" }}>
                 <Typography variant="h5" component="div">
-                  visa
+                  <PaymentIcon id={card.cardType} style={{ margin: 10, width: 24 }} className="payment-icon" />
                 </Typography>
               </Grid>
             </Grid>
@@ -68,9 +78,7 @@ const PaymentMethod = ({ subtotal, setSubtotal }) => {
                 </Typography>
               </Grid>
               <Grid item xs={2} sx={{ marginTop: "12px" }}>
-                <Typography variant="h5" component="div">
-                  paywise
-                </Typography>
+                <img className="paywise_logo" src={require("../../../public/img/paywise_logo.png")} />
               </Grid>
             </Grid>
           </div>

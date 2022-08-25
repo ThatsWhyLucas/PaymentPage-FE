@@ -4,9 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import MyThemeProvider from "../MyThemeProvider";
 import CreditCardForm from "../CreditCardForm";
 
-const DialogCreditCardInfo = ({ handleModal, show }) => {
-  const [open, setOpen] = React.useState(false);
-
+const DialogCreditCardInfo = ({ handleModal, show, card, setCard }) => {
   return (
     <div>
       <MyThemeProvider>
@@ -27,7 +25,7 @@ const DialogCreditCardInfo = ({ handleModal, show }) => {
             </IconButton>
           </DialogTitle>
           <DialogContent style={{ borderTop: "solid 1px #00000012", width: "656px", paddingBottom: "0" }}>
-            <CreditCardForm />
+            <CreditCardForm card={card} setCard={setCard} />
           </DialogContent>
           <DialogActions>
             <Button

@@ -1,8 +1,9 @@
 import React from "react";
 import ErrorIcon from "@mui/icons-material/Error";
-import { TextField, Typography } from "@mui/material";
+import { TextField, Typography, InputAdornment } from "@mui/material";
+import PaymentIcon from "react-payment-icons";
 
-function MyTextField({ element, errors, onChange }) {
+function MyTextField({ element, errors, onChange, adornment = null, cardType = "" }) {
   return (
     <>
       <Typography variant="h5" component="div" className="textField_title">
@@ -21,6 +22,13 @@ function MyTextField({ element, errors, onChange }) {
         placeholder={element.example}
         InputLabelProps={{
           shrink: false,
+        }}
+        InputProps={{
+          startAdornment: adornment ? (
+            <InputAdornment position="start">
+              <PaymentIcon id={cardType} style={{ margin: 10, width: 24 }} className="payment-icon" />
+            </InputAdornment>
+          ) : null,
         }}
       />
     </>
