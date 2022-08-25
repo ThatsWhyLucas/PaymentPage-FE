@@ -4,31 +4,20 @@ import CloseIcon from "@mui/icons-material/Close";
 import MyThemeProvider from "../MyThemeProvider";
 import CreditCardForm from "../CreditCardForm";
 
-const DialogCreditCardInfo = () => {
+const DialogCreditCardInfo = ({ handleModal, show }) => {
   const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
     <div>
       <MyThemeProvider>
-        <Button variant="outlined" onClick={handleClickOpen}>
-          Open CC dialog
-        </Button>
-        <Dialog open={open} onClose={handleClose} maxWidth="md">
+        <Dialog open={show} onClose={handleModal} maxWidth="md">
           <DialogTitle>
             Payment
             <IconButton
               aria-label="close"
-              onClick={handleClose}
+              onClick={handleModal}
               sx={{
-                position: 'absolute',
+                position: "absolute",
                 right: 8,
                 top: 8,
                 color: (theme) => theme.palette.grey[500],
@@ -37,15 +26,21 @@ const DialogCreditCardInfo = () => {
               <CloseIcon />
             </IconButton>
           </DialogTitle>
-          <DialogContent style={{ borderTop: 'solid 1px #00000012', width: '656px', paddingBottom: '0' }} >
-            <CreditCardForm/>
+          <DialogContent style={{ borderTop: "solid 1px #00000012", width: "656px", paddingBottom: "0" }}>
+            <CreditCardForm />
           </DialogContent>
           <DialogActions>
-            <Button variant="contained" onClick={handleClose} style={{ width: '100%', padding: '11px', margin: '16px' }}>Save</Button>
+            <Button
+              variant="contained"
+              onClick={handleModal}
+              style={{ width: "100%", padding: "11px", margin: "16px" }}
+            >
+              Save
+            </Button>
           </DialogActions>
         </Dialog>
       </MyThemeProvider>
-    </div >
+    </div>
   );
 };
 

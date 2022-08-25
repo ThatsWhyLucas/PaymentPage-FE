@@ -9,7 +9,6 @@ import Amount from "../../../Amount";
 import errorsTexts from "../../../../common/errorsTexts";
 
 const DataGrid = ({ price, setPrice, subtotal, setSubtotal, isInvalid }) => {
-
   const [form, setForm] = useState({
     customerNumber: "",
     repeatCustomerNumber: "",
@@ -46,15 +45,22 @@ const DataGrid = ({ price, setPrice, subtotal, setSubtotal, isInvalid }) => {
 
   const hasErrors = () => {
     return (
-      !errors.customerNumber || errors.customerNumber.length !== 0 ||
-      !errors.repeatCustomerNumber || errors.repeatCustomerNumber.length !== 0 ||
-      !errors.customerFirstName || errors.customerFirstName.length !== 0 ||
-      !errors.customerLastName || errors.customerLastName.length !== 0 ||
-      !errors.propertyAddress || errors.propertyAddress.length !== 0 ||
-      !errors.customerEmail || errors.customerEmail.length !== 0 ||
-      !errors.customerMobile || errors.customerMobile.length !== 0
-    )
-  }
+      !errors.customerNumber ||
+      errors.customerNumber.length !== 0 ||
+      !errors.repeatCustomerNumber ||
+      errors.repeatCustomerNumber.length !== 0 ||
+      !errors.customerFirstName ||
+      errors.customerFirstName.length !== 0 ||
+      !errors.customerLastName ||
+      errors.customerLastName.length !== 0 ||
+      !errors.propertyAddress ||
+      errors.propertyAddress.length !== 0 ||
+      !errors.customerEmail ||
+      errors.customerEmail.length !== 0 ||
+      !errors.customerMobile ||
+      errors.customerMobile.length !== 0
+    );
+  };
 
   const validations = {
     setTouched: (name) => {
@@ -158,8 +164,8 @@ const DataGrid = ({ price, setPrice, subtotal, setSubtotal, isInvalid }) => {
   const leftColumn = data.slice(0, 4);
   const rightColumn = data.slice(4, 7);
   return (
-    <Grid className="body_grid" container spacing={{ md: "90px", sm: 0 }}>
-      <Grid item xs={12} md={6}>
+    <Grid className="body_grid" container spacing={"50px"}>
+      <Grid item className="body_column" xs={12} md={6}>
         <Amount subtotal={subtotal} setSubtotal={setSubtotal} />
         {leftColumn.map((element) => (
           <div key={`lf-${element.name}`}>
@@ -167,7 +173,7 @@ const DataGrid = ({ price, setPrice, subtotal, setSubtotal, isInvalid }) => {
           </div>
         ))}
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item className="body_column" xs={12} md={6}>
         {rightColumn.map((element) => (
           <div key={`rg-${element.name}`}>
             <MyTextField element={element} errors={errors} onChange={onChange} />
