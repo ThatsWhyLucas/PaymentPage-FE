@@ -5,9 +5,10 @@ import { Grid } from "@mui/material";
 import MobileInput from "../../../MobilePhone";
 import Summary from "../../../Summary";
 import MyTextField from "../../../MyTextField";
+import Amount from "../../../Amount";
 import errorsTexts from "../../../../common/errorsTexts";
 
-const DataGrid = ({ setPrice, subtotal, setSubtotal }) => {
+const DataGrid = ({ price, setPrice, subtotal, setSubtotal }) => {
   const [form, setForm] = useState({
     customerNumber: "",
     repeatCustomerNumber: "",
@@ -145,6 +146,7 @@ const DataGrid = ({ setPrice, subtotal, setSubtotal }) => {
   return (
     <Grid className="body_grid" container spacing={{ md: "90px", sm: 0 }}>
       <Grid item xs={12} md={6}>
+        <Amount subtotal={subtotal} setSubtotal={setSubtotal} />
         {leftColumn.map((element) => (
           <div key={`lf-${element.name}`}>
             <MyTextField element={element} errors={errors} onChange={handleInformation} />
@@ -158,7 +160,7 @@ const DataGrid = ({ setPrice, subtotal, setSubtotal }) => {
           </div>
         ))}
         <MobileInput value={form["customerMobile"]} label="Customer Mobile Number" onChange={handleInformation} />
-        <Summary subtotal={subtotal} setPrice={setPrice} />
+        <Summary price={price} subtotal={subtotal} setPrice={setPrice} />
       </Grid>
     </Grid>
   );
