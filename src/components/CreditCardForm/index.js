@@ -7,6 +7,7 @@ import valid from "card-validator";
 function CreditCardForm({ isInvalid, card, setCard }) {
   const [form, setForm] = React.useState(card);
   const [cardType, setCardType] = React.useState("");
+  const [lastFour, setLastFour] = React.useState("");
 
   React.useEffect(() => {
     setForm(card);
@@ -115,6 +116,9 @@ function CreditCardForm({ isInvalid, card, setCard }) {
       if (numberValidation.card) {
         setCardType(numberValidation.card.type);
       }
+      if (value.length >= 12) {
+        setLastFour(value.slice(15, 19));
+      }
       if (!value) return value;
       if (value.startsWith("3")) {
         const [, g1, g2, g3] = value.match(/([0-9]{1,4}) ?([0-9]{0,6}) ?([0-9]{0,5})/);
@@ -145,7 +149,7 @@ function CreditCardForm({ isInvalid, card, setCard }) {
       ...form,
       [name]: formattedValue,
       ["cardType"]: cardType ? cardType : "",
-      ["lastFour"]: name === "cardNumber" && card.cardNumber.length >= 12 ? value.slice(15, 19) : "",
+      ["lastFour"]: lastFour ? lastFour : "",
     });
     validations[name](formattedValue);
     isInvalid(hasErrors());

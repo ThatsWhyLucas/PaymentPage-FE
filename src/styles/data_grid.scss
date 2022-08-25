@@ -26,9 +26,6 @@
 
 .payment_method_container {
   margin-bottom: 32px;
-  @media screen and (max-width: 480px) {
-    display: none;
-  }
 }
 
 .method_box {
@@ -36,9 +33,16 @@
   border-radius: 12px;
   width: 250px;
   height: 76px;
+  @media screen and (max-width: 480px) {
+    width: 140px;
+    height: 64px;
+  }
 }
 
 .method_amount {
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
   .css-1z10yd4-MuiFormControl-root-MuiTextField-root {
     margin-top: 0;
   }
@@ -47,12 +51,18 @@
   }
 }
 
+.method_logo {
+  @media screen and (max-width: 480px) {
+    display: none !important;
+  }
+}
+
 .method_title {
   color: #111729;
   font-weight: 700 !important;
   font-size: 16px !important;
   @media screen and (max-width: 480px) {
-    font-size: 14px !important;
+    font-size: 12px !important;
   }
 }
 
@@ -60,6 +70,9 @@
   margin-right: 16px !important;
   @media screen and (max-width: 1440px) {
     margin-right: 32px !important;
+  }
+  @media screen and (max-width: 480px) {
+    margin-right: 76px !important;
   }
 }
 
@@ -69,12 +82,13 @@
   font-size: 16px !important;
   cursor: pointer !important;
   @media screen and (max-width: 480px) {
-    font-size: 14px !important;
+    margin-top: 2px;
+    font-size: 11px !important;
   }
 }
 
 .selected {
-  border: 1px solid #ff7800 !important;
+  border: 2px solid #ff7800 !important;
 }
 
 .cc_number {
