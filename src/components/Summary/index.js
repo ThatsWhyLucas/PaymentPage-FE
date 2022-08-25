@@ -9,7 +9,7 @@ const Summary = ({ subtotal, price, setPrice }) => {
   useEffect(() => {
     const value = parseFloat(subtotal);
     const calculation = (value + 0.3) / 0.971;
-    const fee = Math.abs(parseFloat(value - calculation).toFixed(2));
+    const fee = Math.abs(parseFloat(value - calculation).toFixed(1));
     setCurrentFee(fee);
     setPrice(value - fee);
   }, [subtotal]);

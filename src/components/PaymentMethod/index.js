@@ -24,6 +24,8 @@ const PaymentMethod = ({ subtotal, setSubtotal }) => {
     setShow(!show);
   };
 
+  const screen = window.innerWidth;
+
   return (
     <div className="payment_method_container">
       <DialogCreditCardInfo show={show} handleModal={handleModal} card={card} setCard={setCard} />
@@ -40,7 +42,7 @@ const PaymentMethod = ({ subtotal, setSubtotal }) => {
                   inputProps={{ "aria-label": "A" }}
                 />
               </Grid>
-              <Grid item xs={7} className="cc_number">
+              <Grid item xs={screen < 480 ? 9.5 : 7} className="cc_number">
                 <Typography variant="h5" component="div" className="method_title">
                   **** {card.lastFour}
                 </Typography>
@@ -49,7 +51,7 @@ const PaymentMethod = ({ subtotal, setSubtotal }) => {
                   {card.cardType ? "-" : ""} Edit
                 </Typography>
               </Grid>
-              <Grid item xs={2} sx={{ marginTop: "12px" }}>
+              <Grid item xs={2} sx={{ marginTop: "12px" }} className="method_logo">
                 <Typography variant="h5" component="div">
                   <PaymentIcon id={card.cardType} style={{ margin: 10, width: 24 }} className="payment-icon" />
                 </Typography>
@@ -69,7 +71,7 @@ const PaymentMethod = ({ subtotal, setSubtotal }) => {
                   inputProps={{ "aria-label": "A" }}
                 />
               </Grid>
-              <Grid item xs={7} className="cc_number">
+              <Grid item xs={screen < 480 ? 9.5 : 7} className="cc_number">
                 <Typography variant="h5" component="div" className="method_title">
                   Cash Payment
                 </Typography>
@@ -77,7 +79,7 @@ const PaymentMethod = ({ subtotal, setSubtotal }) => {
                   Paywise - Edit
                 </Typography>
               </Grid>
-              <Grid item xs={2} sx={{ marginTop: "12px" }}>
+              <Grid item xs={2} className="method_logo" sx={{ marginTop: "12px" }}>
                 <img className="paywise_logo" src={require("../../../public/img/paywise_logo.png")} />
               </Grid>
             </Grid>

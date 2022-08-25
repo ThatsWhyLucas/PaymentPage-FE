@@ -6,7 +6,7 @@ import MenuToggler from "../MenuToggler";
 
 const Form = () => {
   const [price, setPrice] = useState(0);
-  const [subtotal, setSubtotal] = useState(0);
+  const [subtotal, setSubtotal] = useState(1);
   return (
     <div style={{ marginTop: "32px" }}>
       <MenuToggler price={price} setPrice={setPrice} subtotal={subtotal} setSubtotal={setSubtotal} />
